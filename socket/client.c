@@ -7,6 +7,8 @@
 #include <stdlib.h>
 
 char ch = 'A';
+const int port = 9000;
+#define IP "192.168.127.130"
 
 int main()
 {
@@ -14,11 +16,12 @@ int main()
 
     struct sockaddr_in address; // 服务器端网络地址结构体
     address.sin_family = AF_INET;
-    address.sin_addr.s_addr = inet_addr("192.168.127.130");
-    address.sin_port = htons(9000);
+    // address.sin_addr.s_addr = inet_addr(IP);
+    address.sin_addr.s_addr = htonl(INADDR_ANY);
+    address.sin_port = htons(port);
     size_t len = sizeof(address);
     connect(client_sockfd, (struct sockaddr *)&address, len);
-    
+
     // 第一次读写
     write(client_sockfd, &ch, 1);
     read(client_sockfd, &ch, 1);
