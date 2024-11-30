@@ -1,4 +1,4 @@
-srcs = main.c comm_epoll.c comm.c
+srcs = main_epoll.c comm_epoll.c comm.c
 cflags = -g -w
 objects        := $(srcs:.c=.o)
 
