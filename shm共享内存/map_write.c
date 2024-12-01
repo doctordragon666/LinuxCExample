@@ -48,12 +48,7 @@ int main(int argc, char *argv[]) //这个进程用于创建映射区进行写。
         sleep(1);
     }//更改数据
 
-    int ret = munmap(p, sizeof(struct Conn_stat));
-    if (ret < 0)
-    {
-        perror("mmumap");
-        exit(4);
-    } //解除映射
+    munmap(p, sizeof(struct Conn_stat));
 
     return 0;
 }

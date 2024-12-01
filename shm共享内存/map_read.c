@@ -12,20 +12,15 @@ struct Conn_stat
     char ip[64];
 };
 
-int main(int argc, char *argv[]) //这个进程创建映射区进行读
+int main(int argc, char *argv[]) // 这个进程创建映射区进行读
 {
     if (argc != 2)
     {
         printf("Usage: %s  file.\n", argv[0]);
         exit(1);
-    } //获取映射文件名称
+    } // 获取映射文件名称
 
     int fd = open(argv[1], O_RDONLY, 0644);
-    if (fd < 0)
-    {
-        perror("open");
-        exit(2);
-    }
 
     struct Conn_stat *p = (struct Conn_stat *)mmap(NULL, sizeof(struct Conn_stat), PROT_READ, MAP_SHARED, fd, 0);
     if (p == MAP_FAILED)
@@ -33,23 +28,16 @@ int main(int argc, char *argv[]) //这个进程创建映射区进行读
         perror("mmap");
         close(fd);
         exit(3);
-    } //映射失败
+    } // 映射失败
 
-    int i = 0;
-    while ((i++) < 10)
+    for (int i = 0; i < 30; i++)
     {
 
         printf("ip = %s ,count: %d\t\t\n", p->ip, p->count);
         sleep(1);
-    } //检测p的更改,读取10次
+    } // 检测p的更改,读取10次
 
-    int ret = munmap(p, sizeof(struct Conn_stat));
-    if (ret < 0)
-    {
-        perror("mmumap");
-        exit(4);
-    } //解除映射
-
+    munmap(p, sizeof(struct Conn_stat));
     close(fd);
 
     return 0;

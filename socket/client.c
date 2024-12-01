@@ -5,6 +5,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <assert.h>
 
 char ch = 'A';
 const int port = 9000;
@@ -16,11 +17,11 @@ int main()
 
     struct sockaddr_in address; // 服务器端网络地址结构体
     address.sin_family = AF_INET;
-    // address.sin_addr.s_addr = inet_addr(IP);
-    address.sin_addr.s_addr = htonl(INADDR_ANY);
-    address.sin_port = htons(port);
+    // address.sin_addr.s_addr = inet_addr(IP);//字符串绑定地址
+    address.sin_addr.s_addr = htonl(INADDR_ANY);//转化为长地址
+    address.sin_port = htons(port);//转化为实际端口号
     size_t len = sizeof(address);
-    connect(client_sockfd, (struct sockaddr *)&address, len);
+    assert(connect(client_sockfd, (struct sockaddr *)&address, len) != -1);
 
     // 第一次读写
     write(client_sockfd, &ch, 1);
