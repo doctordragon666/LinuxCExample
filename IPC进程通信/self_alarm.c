@@ -1,8 +1,16 @@
-//创建一个子进程,子进程在5秒钟之后给父进程发送一个SIGALR,父进程收到SIGALRM信号之后，“闹铃”（用打印模拟） 
+/*************************************************
+Date: 2024年12月1日14点09分
+Description:创建一个子进程,
+子进程在5秒钟之后给父进程发送一个SIGALR,
+父进程收到SIGALRM信号之后，“闹铃”（用打印模拟） 
+*************************************************/
+
+#define _XOPEN_SOURCE // 在Linux桌面系统中没有这个问题
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+
 
 int wakeflag = 0;
 
@@ -13,10 +21,7 @@ void wake_handle(int sig)
 
 int main(void)
 {
-    pid_t pd;
-    char c;
-
-    pd = fork();
+    pid_t pd = fork();
     if (pd == -1)
     {
         printf("fork error!\n");

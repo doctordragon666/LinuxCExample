@@ -1,3 +1,9 @@
+/*************************************************
+Date: 2024年12月1日14点09分
+Description:捕捉信号
+*************************************************/
+
+#define _XOPEN_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>

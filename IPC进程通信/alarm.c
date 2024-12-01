@@ -1,5 +1,9 @@
-//5秒后发信号触发
+/*************************************************
+Date: 2024年12月1日14点09分
+Description:5秒后发信号触发
+*************************************************/
 
+#define _XOPEN_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>

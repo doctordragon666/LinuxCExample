@@ -1,4 +1,9 @@
-//使用信号量，执行多个进程，观察对临界区的访问
+/*************************************************
+Date: 2024年12月1日14点09分
+Description:使用信号量，执行多个进程，
+观察对临界区的访问
+*************************************************/
+
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
@@ -33,7 +38,6 @@ static int sem_initial(int semid)
     {
         fprintf(stderr, "semctl failed!\n");
     }
-
     return ret;
 }
 

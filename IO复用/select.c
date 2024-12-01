@@ -1,3 +1,9 @@
+/*************************************************
+Date: 2024年12月1日10点59分
+Description: 用select来创建一个IO复用的服务器来读取
+client客户端的内容。
+*************************************************/
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <stdio.h>
